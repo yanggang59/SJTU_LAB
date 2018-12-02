@@ -55,6 +55,8 @@ int main(void)
   Debug_USART_Config();
 
 	
+	/*暂时去除按键的功能*/
+	
 	/* 初始化EXTI中断，按下按键会触发中断，
   *  触发中断会进入stm32f4xx_it.c文件中的函数
 	*  KEY1_IRQHandler和KEY2_IRQHandler，处理中断
@@ -80,6 +82,7 @@ int main(void)
 			{	
 				case 0:
 					printf("flag是 %d ,现在的脉冲是%d HZ,转速是 %d r/min \r\n ",flag,1000,60);
+					TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;   //使能
 					TIM_TimeBaseStructure.TIM_Period=999;
 					TIM_OCInitStructure.TIM_Pulse = 500;
 					LCD12864_Display_Words(0, 0, "Flag is 0");
@@ -88,6 +91,7 @@ int main(void)
 					break;
 				case 1:
 					printf("flag是 %d ,现在的脉冲是%d HZ,转速是 %d r/min \r\n ",flag,2000,120);
+				  TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;   //使能
 					TIM_TimeBaseStructure.TIM_Period=499;
 					TIM_OCInitStructure.TIM_Pulse = 250;
 					LCD12864_Display_Words(0, 0, "Flag is 1");
@@ -96,6 +100,7 @@ int main(void)
 					break;
 				case 2:
 					printf("flag是 %d ,现在的脉冲是%d HZ,转速是 %d r/min \r\n ",flag,3000,180);
+					TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;   //使能
 					TIM_TimeBaseStructure.TIM_Period=333;
 					TIM_OCInitStructure.TIM_Pulse = 160;
 					LCD12864_Display_Words(0, 0, "Flag is 2");
@@ -104,6 +109,7 @@ int main(void)
 					break;
 				case 3:
 					printf("flag是 %d ,现在的脉冲是%d HZ ,转速是 %d r/min \r\n ",flag,4000,240);
+					TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;   //使能
 					TIM_TimeBaseStructure.TIM_Period=249;
 					TIM_OCInitStructure.TIM_Pulse = 125;
 					LCD12864_Display_Words(0, 0, "Flag is 3");
@@ -112,6 +118,7 @@ int main(void)
 					break;
 				case 4:
 					printf("flag是 %d ,现在的脉冲是%d HZ,转速是 %d r/min \r\n ",flag,5000,300);
+					TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;   //使能
 					TIM_TimeBaseStructure.TIM_Period=199;
 					TIM_OCInitStructure.TIM_Pulse = 100;
 					LCD12864_Display_Words(0, 0, "Flag is 4");
@@ -120,6 +127,7 @@ int main(void)
 					break;
 				case 5:
 					printf("flag是 %d ,现在的脉冲是%d HZ,转速是 %d r/min \r\n ",flag,6000,360);
+					TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;   //使能
 					TIM_TimeBaseStructure.TIM_Period=167;
 					TIM_OCInitStructure.TIM_Pulse = 83;
 					LCD12864_Display_Words(0, 0, "Flag is 5");
@@ -128,6 +136,7 @@ int main(void)
 					break;
 				case 6:
 					printf("flag是 %d ,现在的脉冲是%d HZ,转速是 %d r/min \r\n ",flag,7000,420);
+					TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;   //使能
 					TIM_TimeBaseStructure.TIM_Period=143;
 					TIM_OCInitStructure.TIM_Pulse = 71;
 					LCD12864_Display_Words(0, 0, "Flag is 6");
@@ -135,6 +144,7 @@ int main(void)
 					LCD12864_Display_Words(2, 0, "Speed is 420 r/n");
 				case 7:
 					printf("flag是 %d ,现在的脉冲是%d HZ,转速是 %d r/min \r\n ",flag,8000,480);
+					TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;   //使能
 					TIM_TimeBaseStructure.TIM_Period=125;
 					TIM_OCInitStructure.TIM_Pulse = 62;
 					LCD12864_Display_Words(0, 0, "Flag is 7");
@@ -142,11 +152,18 @@ int main(void)
 					LCD12864_Display_Words(2, 0, "Speed is 480 r/n");
 				case 8:
 					printf("flag是 %d ,现在的脉冲是%d HZ,转速是 %d r/min \r\n ",flag,9000,540);
+					TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;   //使能
 					TIM_TimeBaseStructure.TIM_Period=111;
 					TIM_OCInitStructure.TIM_Pulse = 50;
 					LCD12864_Display_Words(0, 0, "Flag is 8");
 					LCD12864_Display_Words(1, 0, "PWM is 9000 HZ");					
 					LCD12864_Display_Words(2, 0, "Speed is 540 r/n");
+				case 9:
+					printf("停止转动\n");
+					TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Disable;   //失能
+					LCD12864_Display_Words(0, 0, "Flag is 9");
+					LCD12864_Display_Words(1, 0, "Stoping");					
+					LCD12864_Display_Words(2, 0, "Speed is 0 r/n");
 				
 				default:
 					printf("这是默认的情况 \r\n");
