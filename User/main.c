@@ -162,7 +162,7 @@ int main(void)
 					printf("Í£Ö¹×ª¶¯\n");
 					TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Disable;   //Ê§ÄÜ
 					LCD12864_Display_Words(0, 0, "Flag is 9");
-					LCD12864_Display_Words(1, 0, "Stoping");					
+					LCD12864_Display_Words(1, 0, "Stopping");					
 					LCD12864_Display_Words(2, 0, "Speed is 0 r/n");
 				
 				default:
