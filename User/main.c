@@ -59,7 +59,7 @@ int main(void)
   *  触发中断会进入stm32f4xx_it.c文件中的函数
 	*  KEY1_IRQHandler和KEY2_IRQHandler，处理中断
 	*/
-	EXTI_Key_Config(); 
+	//EXTI_Key_Config(); 
 	
 	
 	/* LED 端口初始化 */

@@ -181,51 +181,56 @@ void DEBUG_USART_IRQHandler(void)
 	{	
 			rx_buf_single=USART_ReceiveData(DEBUG_USART);
 		
-			if(rx_buf_single=='A')
+			if(rx_buf_single=='A')        //60r/min
 			{
 				flag=0;
 				rec_flag=1;
 			}	
-			else if(rx_buf_single=='B')
+			else if(rx_buf_single=='B')   //120r/min
 			{
 				flag=1;
 				rec_flag=1;
 			}				
-			else if(rx_buf_single=='C')
+			else if(rx_buf_single=='C')   //180r/min
 			{
 				flag=2;
 				rec_flag=1;
 			}			
-			else if(rx_buf_single=='D')
+			else if(rx_buf_single=='D')   //240r/min
 			{
 				flag=3;
 				rec_flag=1;
 			}			
-			else if(rx_buf_single=='E')
+			else if(rx_buf_single=='E')   //300r/min
 			{
 				flag=4;
 				rec_flag=1;
 			}
-			else if(rx_buf_single=='F')
+			else if(rx_buf_single=='F')   //360r/min
 			{
 				flag=5;
 				rec_flag=1;
 			}
-			else if(rx_buf_single=='G')
+			else if(rx_buf_single=='G')   //420r/min
 			{
 				flag=6;
 				rec_flag=1;
 			}	
-			else if(rx_buf_single=='H')
+			else if(rx_buf_single=='H')   //480r/min
 			{
 				flag=7;
 				rec_flag=1;
 			}	
-			else if(rx_buf_single=='I')
+			else if(rx_buf_single=='I')   //540r/min
 			{
 				flag=8;
 				rec_flag=1;
-			}						
+			}		
+			else if(rx_buf_single=='X')   //STOP
+			{
+				flag=9;
+				rec_flag=1;
+			}		
 	}
 }
 
