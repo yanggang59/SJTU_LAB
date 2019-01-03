@@ -87,6 +87,7 @@ int main(void)
 	
   while(1)
   {  
+		//只有当收到数据时才会更改转速和打印显示转速
 		if(rec_flag)
 		{			
 		  rec_flag=0;
@@ -207,22 +208,32 @@ int main(void)
 //		SysTick_Delay_Ms( 1000 );
 //		LED3( OFF );
 		
-		//转换之后的电压值 0-3.3V之间，PC0,PC1,PC2,PC3,PC4,PC5
+		
+		// 1-PC0 在指南者里面接的是蜂鸣器，默认被拉低
+    // 2-PC0 在指南者里面接的是SPI FLASH的 片选，默认被拉高
+    // 所以 PC0 做 ADC 转换通道的时候，结果可能会有误差
+		//PC1连了滑动变阻器，因此选择 PC2 PC3 PC4 PC5
+		//转换之后的电压值 0-3.3V之间，PC2,PC3,PC4,PC5
+
 		ADC_ConvertedValueLocal[0] =(float) ADC_ConvertedValue[0]/4096*3.3;
 		ADC_ConvertedValueLocal[1] =(float) ADC_ConvertedValue[1]/4096*3.3;
 		ADC_ConvertedValueLocal[2] =(float) ADC_ConvertedValue[2]/4096*3.3;
 		ADC_ConvertedValueLocal[3] =(float) ADC_ConvertedValue[3]/4096*3.3;
-		ADC_ConvertedValueLocal[4] =(float) ADC_ConvertedValue[4]/4096*3.3;
-		ADC_ConvertedValueLocal[5] =(float) ADC_ConvertedValue[5]/4096*3.3;
+
 	
-		printf("\r\n CH0 value = %f V \r\n",ADC_ConvertedValueLocal[0]);
-		printf("\r\n CH1 value = %f V \r\n",ADC_ConvertedValueLocal[1]);
-		printf("\r\n CH2 value = %f V \r\n",ADC_ConvertedValueLocal[2]);
-		printf("\r\n CH3 value = %f V \r\n",ADC_ConvertedValueLocal[3]);
-		printf("\r\n CH4 value = %f V \r\n",ADC_ConvertedValueLocal[4]);
-		printf("\r\n CH5 value = %f V \r\n",ADC_ConvertedValueLocal[5]);
-	
+		//使用的重量传感器为0-50Kg，对应的电压值是0-3.3V,暂时使用 ADC1 的 PC2,PC3,PC4 ,PC5 四个通道,注意：不使用PC0
+		float sum_voltage = ADC_ConvertedValueLocal[0]+ADC_ConvertedValueLocal[1]+ADC_ConvertedValueLocal[2]+ADC_ConvertedValueLocal[3] ;
+		
+		float weight = sum_voltage/3.3 * 50 ;
+		
+		printf("-----------------------------------------------------");
+		
+		printf("\r\n Weight is %f Kg \r\n",weight);
+		
+		printf("-----------------------------------------------------");
+		
 		printf("\r\n\r\n");
+		
 		SysTick_Delay_Ms( 1000 );		 
 			
 	}

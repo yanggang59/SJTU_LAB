@@ -19,26 +19,22 @@
 // 所以 PC0 做 ADC 转换通道的时候，结果可能会有误差
 
 // 转换通道个数
-#define    NOFCHANEL										 6
+#define    NOFCHANEL										 4
 
-#define    ADC_PIN1                      GPIO_Pin_0
-#define    ADC_CHANNEL1                  ADC_Channel_10
+//#define    ADC_PIN1                      GPIO_Pin_1
+//#define    ADC_CHANNEL1                  ADC_Channel_11
 
-#define    ADC_PIN2                      GPIO_Pin_1
-#define    ADC_CHANNEL2                  ADC_Channel_11
+#define    ADC_PIN2                      GPIO_Pin_2
+#define    ADC_CHANNEL2                  ADC_Channel_12
 
-#define    ADC_PIN3                      GPIO_Pin_2
-#define    ADC_CHANNEL3                  ADC_Channel_12
+#define    ADC_PIN3                      GPIO_Pin_3
+#define    ADC_CHANNEL3                  ADC_Channel_13
 
-#define    ADC_PIN4                      GPIO_Pin_3
-#define    ADC_CHANNEL4                  ADC_Channel_13
+#define    ADC_PIN4                      GPIO_Pin_4
+#define    ADC_CHANNEL4                  ADC_Channel_14
 
-#define    ADC_PIN5                      GPIO_Pin_4
-#define    ADC_CHANNEL5                  ADC_Channel_14
-
-#define    ADC_PIN6                      GPIO_Pin_5
-#define    ADC_CHANNEL6                  ADC_Channel_15
-
+#define    ADC_PIN5                      GPIO_Pin_5
+#define    ADC_CHANNEL5                  ADC_Channel_15
 
 // ADC1 对应 DMA1通道1，ADC3对应DMA2通道5，ADC2没有DMA功能
 #define    ADC_x                         ADC1
